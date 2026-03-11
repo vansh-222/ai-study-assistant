@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Study Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">📚 AI Study Assistant</div>
+    <p class="tagline">Upload a PDF and let AI generate questions, flashcards, study plans &amp; mock tests.</p>
+  </header>
+
+  <main>
+    <!-- Upload Section -->
+    <section class="card upload-section">
+      <h2>Upload PDF</h2>
+      <div class="drop-zone" id="dropZone">
+        <span class="drop-icon">⬆️</span>
+        <p>Drag &amp; drop your PDF here, or <label for="fileInput" class="browse-link">browse</label></p>
+        <input type="file" id="fileInput" accept=".pdf" hidden />
+        <p id="fileName" class="file-name"></p>
+      </div>
+
+      <div class="options-row">
+        <label>
+          Number of items
+          <input type="number" id="numItems" value="10" min="1" max="30" />
+        </label>
+        <label>
+          Study plan days
+          <input type="number" id="planDays" value="7" min="1" max="30" />
+        </label>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="btnExtract">Extract Text</button>
+        <button class="btn" id="btnQuestions">Questions</button>
+        <button class="btn" id="btnFlashcards">Flashcards</button>
+        <button class="btn" id="btnStudyPlan">Study Plan</button>
+        <button class="btn" id="btnMockTest">Mock Test</button>
+      </div>
+
+      <div id="spinner" class="spinner hidden" aria-label="Loading…"></div>
+      <p id="errorMsg" class="error hidden"></p>
+    </section>
+
+    <!-- Extracted Text -->
+    <section class="card result-section hidden" id="textSection">
+      <h2>Extracted Text</h2>
+      <textarea id="extractedText" rows="12" readonly></textarea>
+      <p class="hint">You can also paste text here and click a generation button directly.</p>
+      <button class="btn btn-small" id="btnClearText">Clear</button>
+    </section>
+
+    <!-- Questions -->
+    <section class="card result-section hidden" id="questionsSection">
+      <h2>Study Questions</h2>
+      <ol id="questionsList"></ol>
+    </section>
+
+    <!-- Flashcards -->
+    <section class="card result-section hidden" id="flashcardsSection">
+      <h2>Flashcards</h2>
+      <div id="flashcardsContainer"></div>
+    </section>
+
+    <!-- Study Plan -->
+    <section class="card result-section hidden" id="studyPlanSection">
+      <h2>Study Plan</h2>
+      <div id="studyPlanContainer"></div>
+    </section>
+
+    <!-- Mock Test -->
+    <section class="card result-section hidden" id="mockTestSection">
+      <h2>Mock Test</h2>
+      <div id="mockTestContainer"></div>
+      <button class="btn btn-primary" id="btnSubmitTest" style="margin-top:1rem;">Submit &amp; Score</button>
+      <div id="testScore" class="hidden score-box"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Powered by OpenAI &bull; Built with Flask &amp; plain JS</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
